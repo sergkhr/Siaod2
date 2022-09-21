@@ -56,6 +56,7 @@ void secondTask()
 	unsigned int x;
 	cout << "input x" << endl;
 	cin >> x;
+
 	unsigned int mask = 0b10100000;
 	mask = ~mask;
 
@@ -94,9 +95,8 @@ void fifthTask()
 	cout << "input n" << endl;
 	int n;
 	cin >> n;
-	mask = mask << n;
-
 	
+	mask = mask << n;
 	coutp(x & (~mask));
 }
 
