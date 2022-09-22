@@ -3,11 +3,11 @@
 using namespace std;
 
 void coutp(unsigned int x);
-void firstTask();
-void secondTask();
-void thirdTask();
-void fourthTask();
-void fifthTask();
+unsigned int firstTask(unsigned int x);
+unsigned int secondTask(unsigned int x);
+unsigned int thirdTask(unsigned int x);
+unsigned int fourthTask(unsigned int x);
+unsigned int fifthTask(unsigned int x, int n);
 
 int main()
 {
@@ -16,22 +16,43 @@ int main()
 	//I don't do protection against wront input
 	int pick;
 	cin >> pick;
+	unsigned int x;
 	switch (pick)
 	{
 	case 1:
-		firstTask();
+		cout << "first task" << endl;
+		x = 0x7;
+		coutp(x);
+		coutp(firstTask(x));
 		break;
 	case 2:
-		secondTask();
+		cout << "second task" << endl;
+		cout << "input x" << endl;
+		cin >> x;
+		coutp(x);
+		coutp(secondTask(x));
 		break;
 	case 3:
-		thirdTask();
+		cout << "third task" << endl;
+		cout << "input x" << endl;
+		cin >> x;
+		cout << thirdTask(x);
 		break;
 	case 4:
-		fourthTask();
+		cout << "fourth task" << endl;
+		cout << "input x" << endl;
+		cin >> x;
+		cout << fourthTask(x);
 		break;
 	case 5:
-		fifthTask();
+		cout << "fifth task" << endl;
+		cout << "input x" << endl;
+		cin >> x;
+		coutp(x);
+		cout << "input n" << endl;
+		int n;
+		cin >> n;
+		coutp(fifthTask(x ,n));
 		break;
 	default:
 		cout << "wrong input" << endl;
@@ -40,64 +61,34 @@ int main()
 	return 0;
 }
 
-void firstTask()
+unsigned int firstTask(unsigned int x)
 {
-	cout << "first task" << endl;
-	unsigned int x = 0xa7;
 	unsigned int mask = 0b111100000;
-
-	coutp(x);
-	coutp(x | mask);
+	return(x | mask);
 }
 
-void secondTask()
+unsigned int secondTask(unsigned int x)
 {
-	cout << "second task" << endl;
-	unsigned int x;
-	cout << "input x" << endl;
-	cin >> x;
-
 	unsigned int mask = 0b10100000;
 	mask = ~mask;
-
-	coutp(x);
-	coutp(x & mask);
+	return(x & mask);
 }
 
-void thirdTask()
+unsigned int thirdTask(unsigned int x)
 {
-	cout << "third task" << endl;
-	unsigned int x;
-	cout << "input x" << endl;
-	cin >> x;
-
-	cout << (x << 5);
+	return(x << 5);
 }
 
-void fourthTask()
+unsigned int fourthTask(unsigned int x)
 {
-	cout << "fourth task" << endl;
-	unsigned int x;
-	cout << "input x" << endl;
-	cin >> x;
-
-	cout << (x >> 5);
+	return(x >> 5);
 }
 
-void fifthTask()
+unsigned int fifthTask(unsigned int x, int n)
 {
-	cout << "fifth task" << endl;
-	unsigned int x;
-	cout << "input x" << endl;
-	cin >> x;
 	unsigned int mask = 1;
-	coutp(x);
-	cout << "input n" << endl;
-	int n;
-	cin >> n;
-	
 	mask = mask << n;
-	coutp(x & (~mask));
+	return(x & (~mask));
 }
 
 void coutp(unsigned int x)
