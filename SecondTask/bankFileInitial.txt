@@ -1,0 +1,3 @@
+123;Severniy bank;stolitza;false
+67;obratniy;gorodA;true
+888;nash;cheremushki;true

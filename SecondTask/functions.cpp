@@ -7,10 +7,6 @@ using namespace std;
 
 int generateFile(string fileName, int size){
 	ofstream fout(fileName);
-	// if (!fout.is_open()){
-	// 	cout << "file doesn't exist" << endl;
-	// 	return 1;
-	// }
 	for (int i = 0; i < size; i++){
 		fout << rand() % 100 << " ";
 		if((i+1) % 4 == 0) fout << "\n";
