@@ -7,6 +7,11 @@ using namespace std;
 
 int generateFile(string fileName, int size){
 	ofstream fout(fileName);
+	if (!fout.is_open()){
+		cout << "file doesn't exist" << endl;
+		fout.close();
+		return 1;
+	}
 	for (int i = 0; i < size; i++){
 		fout << rand() % 100 << " ";
 		if((i+1) % 4 == 0) fout << "\n";
@@ -20,6 +25,7 @@ int readFile(string fileName){
 	ifstream fin(fileName);
 	if (!fin.is_open()){
 		cout << "file doesn't exist" << endl;
+		fin.close();
 		return 1;
 	}
 	while (fin.good()){
@@ -35,6 +41,7 @@ int addToFile(string fileName, string toAdd){
 	ofstream fout(fileName, ios::app);
 	if (!fout.is_open()){
 		cout << "file doesn't exist" << endl;
+		fout.close();
 		return 1;
 	}
 	fout << toAdd << endl;
@@ -42,13 +49,14 @@ int addToFile(string fileName, string toAdd){
 	return 0;
 }
 
-int findNumber(string fileName, int number){
+string findNumber(string fileName, int index){
 	ifstream fin(fileName);
 	if (!fin.is_open()){
 		cout << "file doesn't exist" << endl;
-		return 1;
+		fin.close();
+		return "";
 	}
-	int count = 0; 
+	int count = 1; 
 	while (fin.good()){
 		string tmp;
 		getline(fin, tmp);
@@ -60,13 +68,12 @@ int findNumber(string fileName, int number){
 			else{
 				try{ //checking if the word is a number
 					int num = stoi(word);
-					if (num != number){
+					if (count != index){
 						count++;
 					}
 					else{
 						count++;
-						cout << "number " << number << " is on " << count << " position" << endl;
-						return 0;
+						return word;
 					}
 				}
 				catch(std::invalid_argument const& ex){
@@ -76,13 +83,17 @@ int findNumber(string fileName, int number){
 			}
 		}
 	}
-	cout << "there are no such number in the file" << endl;
 	fin.close();
-	return 0;
+	return "";
 }
 
 int numbersCount(string fileName){
 	ifstream fin(fileName);
+	if (!fin.is_open()){
+		cout << "file doesn't exist" << endl;
+		fin.close();
+		return -1;
+	}
 	int count = 0;
 	while (fin.good()){
 		string tmp;
@@ -114,6 +125,8 @@ int fibbonachiFile(string fileName){
 	ifstream fin(fileName);
 	if (!fin.is_open()){
 		cout << "file doesn't exist" << endl;
+		fin.close();
+		fout.close();
 		return 1;
 	}
 	int a = 0, b = 0, c = 1;
@@ -146,6 +159,7 @@ int fibbonachiFile(string fileName){
 			}
 		}
 	}
+	fin.close();
 	fout.close();
 	return 0;
 }

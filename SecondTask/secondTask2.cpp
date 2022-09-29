@@ -2,33 +2,21 @@
 #include <fstream>
 #include <time.h>
 #include <string>
-#include "functions.cpp"
+#include "functions2.cpp"
 
 using namespace std;
 
-struct Bank{
-	int id;
-	string name;
-	string city;
-	bool commercialOrState; //true - commercial, false - state 
-};
 int main(){
 	cout << "input file name (without .txt)" << endl;
 	string fileName;
 	cin >> fileName;
 	fileName += ".txt";
-	ifstream fin(fileName);
-	if(!fin.is_open()){
-		cout << "file doesn't exist" << endl;
-		return 1;
-	}
+
 
 	cout << "input file name for binary file (without .txt)" << endl;
 	string fileNameBin;
 	cin >> fileNameBin;
 	fileNameBin += ".txt";
-	// ofstream foutBin(fileNameBin, ios::out|ios::binary);
-	// ifstream finBin(fileNameBin, ios::in|ios::binary);
 	fstream finoutBin(fileNameBin, ios::in|ios::out|ios::binary);
 	if(!finoutBin.is_open()){
 		cout << "file doesn't exist" << endl;
@@ -45,5 +33,25 @@ int main(){
 		return 1;
 	}
 
+	toBinary(fileName, fileNameBin);
+	toText(fileNameBin, fileNameText);
+	printBinary(fileNameBin);
+	cout << "input id of bank" << endl;
+	int id;
+	cin >> id;
+	Bank bank;
+	if(getBank(finoutBin, bank, id)){
+		cout << "id: " << bank.id << endl;
+		cout << "name: " << bank.name << endl;
+		cout << "city: " << bank.city << endl;
+		cout << (bank.commercialOrState? "commercial" : "state") << endl;
+	}
+	else cout << "no such bank" << endl;
+	
+
+
+	fin.close();
+	finoutBin.close();
+	foutText.close();
 	return 0;
 }

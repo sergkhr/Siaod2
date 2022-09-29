@@ -71,15 +71,15 @@ int main(){
 		cout << "we assume that is a \"no\"" << endl;
 	}
 
-	cout << "input a number to find" << endl;
-	int number;
-	while(!(cin >> number)){
-		cout << "input a number to find" << endl;
+	cout << "input searched index" << endl;
+	int index;
+	while(!(cin >> index)){
+		cout << "input searched index" << endl;
 		cin.clear();
 		cin.ignore(10000, '\n');
 	}
 	if(fin.is_open()){
-		findNumber(fileName, number);
+		cout << "number on " << index << " pos is " << findNumber(fileName, index) << endl;
 	}
 
 	if(fin.is_open()){
