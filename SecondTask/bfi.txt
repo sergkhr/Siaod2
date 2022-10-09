@@ -1,1 +1,1 @@
-123;Severniy bank;stolitza;false;67;obratniy;gorodA;true;888;nash;cheremushki;true;69;vperedniy;gorodA;false
+123;Severniy bank;stolitza;false;67;obratniy;gorodA;true;888;nash;cheremushki;true;69;vperedniy;gorodA;false;124;Severniy bank da;stolitza;true

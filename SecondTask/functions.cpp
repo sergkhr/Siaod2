@@ -44,7 +44,7 @@ int addToFile(string fileName, string toAdd){
 		fout.close();
 		return 1;
 	}
-	fout << toAdd << endl;
+	fout << toAdd << " " << endl;
 	fout.close();
 	return 0;
 }

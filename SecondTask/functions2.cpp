@@ -77,7 +77,7 @@ int printBinary(string fileNameBin){//print from binary file
 	return 0;
 }
 
-int getBank(string fileNameBin, Bank &bank, int ind){//get bank by id from binary file
+int getBank(string fileNameBin, Bank &bank, int ind){//get bank by ind from binary file
 	//returns 0 if bank was found, 1 if file doesn't exist, 2 if bank wasn't found
 	fstream fin(fileNameBin, ios::in|ios::binary);
 	if(!fin.is_open()){
@@ -113,7 +113,6 @@ int deleteBank(string fileNameBin, int id){//delete bank by id from binary file
 	Bank bank;
 	fin.seekg(0, ios::beg);
 	while(fin.read((char*)&bank, sizeof(bank))){
-		cout << bank.id << endl;
 		if(bank.id == id){
 			fin.seekp(-sizeof(bank), ios::cur);
 			fin.write((char*)&lastBank, sizeof(lastBank));
@@ -149,7 +148,7 @@ int changeOwnership(string fileNameBin, int id){//change bank commercialOrState 
 	return 2;
 }
 
-int printBanksOfCity(string fileNameBin, string city){//print banks of city from binary file
+int printBanksOfCity(string fileNameBin, string city){//print commercial banks of city from binary file
 	fstream fin(fileNameBin, ios::in|ios::binary);
 	if(!fin.is_open()){
 		cout << "file doesn't exist" << endl;

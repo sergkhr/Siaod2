@@ -2,3 +2,4 @@
 67;obratniy;gorodA;true
 888;nash;cheremushki;true
 69;vperedniy;gorodA;false
+124;Severniy bank da;stolitza;true

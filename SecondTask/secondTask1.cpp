@@ -48,6 +48,8 @@ int main(){
 		else cout << "we assume that is a \"no\"" << endl;
 	}
 
+	fin.close();
+	fin.open(fileName);
 	if(fin.is_open()){
 		readFile(fileName);
 	}
@@ -58,7 +60,9 @@ int main(){
 	if (answer == 'y'){
 		cout << "input line" << endl;
 		string toAdd;
-		cin >> toAdd;
+		cin.clear();
+		cin.ignore(10000, '\n');
+		getline(cin, toAdd);
 		if(fin.is_open()){
 			addToFile(fileName, toAdd);
 			readFile(fileName);

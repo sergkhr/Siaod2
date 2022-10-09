@@ -70,7 +70,7 @@ int main(){
 	cout << "\ncontents of binary file:" << endl;
 	printBinary(fileNameBin);
 
-	cout << "\ninput name of the city banks of which you want to print" << endl;
+	cout << "\ninput name of the city commercial banks of which you want to print" << endl;
 	string city;
 	cin >> city;
 	printBanksOfCity(fileNameBin ,city);
