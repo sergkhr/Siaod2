@@ -4,12 +4,12 @@
 #include <time.h>
 #include <string>
 #include <vector>
-#include "libraries/hashFunctions.h"
-#include "libraries/binFile.h"
+#include "libraries/hashBinFile.h"
 
 using namespace std;
 
 int main(){
-	testHashT();
+	//testHashT();
+	testBinF();
 	return 0;
 }

@@ -35,7 +35,8 @@
 					"targetIndexes" : 
 					[
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -55,7 +56,8 @@
 						1,
 						2,
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -64,14 +66,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ALL_BUILD-Debug-62b88755a71ca780d468.json",
+					"jsonFile" : "target-ALL_BUILD-Debug-23f7b78d2816cadffd13.json",
 					"name" : "ALL_BUILD",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "ThirdTask::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ThirdTask-Debug-b7e4d324ea95710ea19a.json",
+					"jsonFile" : "target-ThirdTask-Debug-40d2375bbbdb5628ee0b.json",
 					"name" : "ThirdTask",
 					"projectIndex" : 0
 				},
@@ -87,6 +89,13 @@
 					"id" : "binFile::@56099a33689f37a39260",
 					"jsonFile" : "target-binFile-Debug-4e1bc287f8fddb0030e4.json",
 					"name" : "binFile",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "hashBinFile::@56099a33689f37a39260",
+					"jsonFile" : "target-hashBinFile-Debug-47c54ae10f80849f93ca.json",
+					"name" : "hashBinFile",
 					"projectIndex" : 0
 				},
 				{
@@ -132,7 +141,8 @@
 					"targetIndexes" : 
 					[
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -152,7 +162,8 @@
 						1,
 						2,
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -161,14 +172,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ALL_BUILD-Release-62b88755a71ca780d468.json",
+					"jsonFile" : "target-ALL_BUILD-Release-23f7b78d2816cadffd13.json",
 					"name" : "ALL_BUILD",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "ThirdTask::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ThirdTask-Release-0ea253117c42a12a1892.json",
+					"jsonFile" : "target-ThirdTask-Release-d7d9d86c42102d7a0ddb.json",
 					"name" : "ThirdTask",
 					"projectIndex" : 0
 				},
@@ -184,6 +195,13 @@
 					"id" : "binFile::@56099a33689f37a39260",
 					"jsonFile" : "target-binFile-Release-b12b1eb56786a9b98a89.json",
 					"name" : "binFile",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "hashBinFile::@56099a33689f37a39260",
+					"jsonFile" : "target-hashBinFile-Release-82cc9a07c00b400bbeec.json",
+					"name" : "hashBinFile",
 					"projectIndex" : 0
 				},
 				{
@@ -229,7 +247,8 @@
 					"targetIndexes" : 
 					[
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -249,7 +268,8 @@
 						1,
 						2,
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -258,14 +278,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ALL_BUILD-MinSizeRel-62b88755a71ca780d468.json",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-23f7b78d2816cadffd13.json",
 					"name" : "ALL_BUILD",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "ThirdTask::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ThirdTask-MinSizeRel-86ae03811a9d3cf84351.json",
+					"jsonFile" : "target-ThirdTask-MinSizeRel-caa6e2054ddc77d4ddbc.json",
 					"name" : "ThirdTask",
 					"projectIndex" : 0
 				},
@@ -281,6 +301,13 @@
 					"id" : "binFile::@56099a33689f37a39260",
 					"jsonFile" : "target-binFile-MinSizeRel-7c2411eb63a6ac25aed1.json",
 					"name" : "binFile",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "hashBinFile::@56099a33689f37a39260",
+					"jsonFile" : "target-hashBinFile-MinSizeRel-f95188ac34eea3512d93.json",
+					"name" : "hashBinFile",
 					"projectIndex" : 0
 				},
 				{
@@ -326,7 +353,8 @@
 					"targetIndexes" : 
 					[
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -346,7 +374,8 @@
 						1,
 						2,
 						3,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -355,14 +384,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-62b88755a71ca780d468.json",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-23f7b78d2816cadffd13.json",
 					"name" : "ALL_BUILD",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "ThirdTask::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ThirdTask-RelWithDebInfo-6f2381af661f96d690fe.json",
+					"jsonFile" : "target-ThirdTask-RelWithDebInfo-86731db58613395d6723.json",
 					"name" : "ThirdTask",
 					"projectIndex" : 0
 				},
@@ -378,6 +407,13 @@
 					"id" : "binFile::@56099a33689f37a39260",
 					"jsonFile" : "target-binFile-RelWithDebInfo-e441501a772da71a221d.json",
 					"name" : "binFile",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "hashBinFile::@56099a33689f37a39260",
+					"jsonFile" : "target-hashBinFile-RelWithDebInfo-b720dbc51a1b00a7bc3b.json",
+					"name" : "hashBinFile",
 					"projectIndex" : 0
 				},
 				{

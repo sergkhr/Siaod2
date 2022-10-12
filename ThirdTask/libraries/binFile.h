@@ -18,7 +18,9 @@ struct Bank{
 
 int toBinary(string fileName, string fileNameBin);//read from text file and write to binary file
 int getBank(string fileNameBin, Bank &bank, int ind);//get bank by id from binary file
-int deleteBank(string fileNameBin, int id);//delete bank by id from binary file
+int deleteBankById(string fileNameBin, int id);
+int deleteBankByIndex(string fileNameBin, int ind);
+int addBank(string fileNameBin, const Bank &bank, int ind = -1);
 
 void testBinF();
 

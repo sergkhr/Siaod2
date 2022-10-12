@@ -178,6 +178,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{2AE2BA47-9CCD-39E6-9604-8971E51DBEC9}</Project>
       <Name>binFile</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\Sergey Khrechko\Siaod2\ThirdTask\build\libraries\hashBinFile.vcxproj">
+      <Project>{248123CE-F7DD-3FF9-878A-6E8CF62E399B}</Project>
+      <Name>hashBinFile</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\Sergey Khrechko\Siaod2\ThirdTask\build\libraries\hashFunctions.vcxproj">
       <Project>{E647DF60-7777-35EA-80E4-13F355C0106C}</Project>
       <Name>hashFunctions</Name>

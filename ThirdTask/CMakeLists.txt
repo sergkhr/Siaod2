@@ -6,3 +6,7 @@ add_executable(${PROJECT_NAME} main.cpp)
 add_subdirectory(./libraries)
 
 target_link_libraries(${PROJECT_NAME} hashFunctions)
+target_link_libraries(${PROJECT_NAME} binFile)
+target_link_libraries(${PROJECT_NAME} hashBinFile)
+
+

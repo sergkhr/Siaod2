@@ -1,13 +1,13 @@
 #include "hashFunctions.h"
 
-int hash1(const int id){
-	return (((id % 20 + 1) << 2) - 3); //interesting enough???
+int hash1(const int id, const int tableSize){
+	return (((id % (tableSize + 7) + 1) << 2) - 3); //interesting enough???
 }
 int hash2(const int id, const int tableSize){
 	return (id % (tableSize-1) + 1);
 }
 int addHash(vector<vector<int>> &hashTable, int &tableSize, const int id, const int index){
-	int hash = hash1(id) % tableSize;
+	int hash = hash1(id, tableSize) % tableSize;
 	int step = hash2(id, tableSize);
 	for(int i = 0; i < tableSize; i++){
 		if(hashTable[hash][1] < 0){ //-1 means empty, -2 means deleted
@@ -20,7 +20,7 @@ int addHash(vector<vector<int>> &hashTable, int &tableSize, const int id, const 
 	return resizeHash(hashTable, tableSize); //resize if full
 }
 int deleteHash(vector<vector<int>> &hashTable, const int tableSize, const int id){
-	int hash = hash1(id) % tableSize;
+	int hash = hash1(id, tableSize) % tableSize;
 	int step = hash2(id, tableSize);
 	for(int i = 0; i < tableSize; i++){
 		if(hashTable[hash][1] == -1){ //-1 means empty
@@ -28,14 +28,14 @@ int deleteHash(vector<vector<int>> &hashTable, const int tableSize, const int id
 		}
 		if(hashTable[hash][0] == id){ 
 			hashTable[hash][1] = -2; //-2 means deleted   deleted != empty so search should be fine
-			return 0; //0 means success
+			return 0; //>= 0 means success;
 		}
 		hash = (hash + step) % tableSize;
 	}
 	return -1; //-1 means not found
 }
 int findByHash(const vector<vector<int>> &hashTable, const int tableSize, const int id){
-	int hash = hash1(id) % tableSize;
+	int hash = hash1(id, tableSize) % tableSize;
 	int step = hash2(id, tableSize);
 	for(int i = 0; i < tableSize; i++){
 		if(hashTable[hash][1] == -1){ //-1 means empty
@@ -106,7 +106,7 @@ void testHashT(){
     cout << "pick what to delete" << endl;
     int delId;
     cin >> delId;
-    if(!deleteHash(hashTable, hashSize, delId)) cout << "deleted" << endl;
+    if(deleteHash(hashTable, hashSize, delId) >= 0) cout << "deleted" << endl;
     else cout << "not found" << endl;
     cout << "pick what to find" << endl;
     int findId;

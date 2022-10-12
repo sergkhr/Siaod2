@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int hash1(const int id);
+int hash1(const int id, const int tableSize);
 int hash2(const int id, const int tableSize);
 int addHash(vector<vector<int>> &hashTable, int &tableSize, const int id, const int index);
 int deleteHash(vector<vector<int>> &hashTable, const int tableSize, const int id);

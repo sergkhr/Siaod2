@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Debug/ThirdTask.exe"
+			"path" : "MinSizeRel/ThirdTask.exe"
 		},
 		{
-			"path" : "Debug/ThirdTask.pdb"
+			"path" : "MinSizeRel/ThirdTask.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -36,6 +36,18 @@
 				"file" : 0,
 				"line" : 8,
 				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
 			}
 		]
 	},
@@ -45,7 +57,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG"
 				}
 			],
 			"language" : "CXX",
@@ -58,11 +70,19 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 2,
 			"id" : "hashFunctions::@56099a33689f37a39260"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "binFile::@56099a33689f37a39260"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "hashBinFile::@56099a33689f37a39260"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "ThirdTask::@6890427a1f51a3e7e1df",
@@ -71,16 +91,26 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "libraries\\Debug\\hashFunctions.lib",
+				"fragment" : "libraries\\MinSizeRel\\hashFunctions.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "libraries\\MinSizeRel\\binFile.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "libraries\\MinSizeRel\\hashBinFile.lib",
 				"role" : "libraries"
 			},
 			{
