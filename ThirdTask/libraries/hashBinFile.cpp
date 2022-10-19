@@ -1,7 +1,7 @@
 #include "hashBinFile.h"
 
-int hashRecord(string fileNameBin, int ind, vector<vector<int>> &hashTable, int &tableSize){
-	fstream fin("../../" + fileNameBin, ios::in|ios::binary);
+int hashRecord(string fileName, int ind, vector<vector<int>> &hashTable, int &tableSize, int &hashElements, int &deletedElements){
+	fstream fin("../../" + fileName, ios::in|ios::binary);
 	if(!fin.is_open()){
 		cout << "file doesn't exist" << endl;
 		fin.close();
@@ -15,11 +15,13 @@ int hashRecord(string fileNameBin, int ind, vector<vector<int>> &hashTable, int 
 		return 2; //index out of bounds
 	}
 	int id = readBank.id;
+	if(hashElements + deletedElements > (int)(0.75 * tableSize)) resizeHash(hashTable, tableSize);
+	hashElements++;
 	return addHash(hashTable, tableSize, id, ind);
 }
 
 
-int hashFile(string fileName, vector<vector<int>> &hashTable, int &tableSize){
+int hashFile(string fileName, vector<vector<int>> &hashTable, int &tableSize, int &hashElements, int &deletedElements){
 	//returns 0 if file was hashed, 1 if file doesn't exist
 	fstream fin("../../" + fileName, ios::in|ios::binary);
 	if(!fin.is_open()){
@@ -33,6 +35,8 @@ int hashFile(string fileName, vector<vector<int>> &hashTable, int &tableSize){
 	int ind = 0;
 	while(fin.read((char*)&bank, sizeof(bank))){
 		int id = bank.id;
+		if(hashElements + deletedElements > (int)(0.75 * tableSize)) resizeHash(hashTable, tableSize);
+		hashElements++;
 		addHash(hashTable, tableSize, id, ind);
 		ind++;
 	}
@@ -40,7 +44,7 @@ int hashFile(string fileName, vector<vector<int>> &hashTable, int &tableSize){
 	return 0;
 }
 
-int deleteRecordById(string fileName, int id, vector<vector<int>> &hashTable, const int &tableSize){
+int deleteRecordById(string fileName, int id, vector<vector<int>> &hashTable, int &tableSize, int &deletedElements){
 	//returns 0 if bank was deleted, 1 if file doesn't exist, 2 if bank wasn't found
 	fstream fin("../../" + fileName, ios::in|ios::out|ios::binary);
 	if(!fin.is_open()){
@@ -55,6 +59,7 @@ int deleteRecordById(string fileName, int id, vector<vector<int>> &hashTable, co
 	}
 	
 	deleteHash(hashTable, tableSize, id);
+	deletedElements++;
 	Bank bank;
 	fin.seekg(sizeof(Bank)*(ind), ios::beg);
 	fin.read((char*)&bank, sizeof(Bank));

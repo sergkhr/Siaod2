@@ -6,9 +6,9 @@
 
 using namespace std;
 
-int hashRecord(string fileName, int ind, vector<vector<int>> &hashTable, int &tableSize);
-int hashFile(string fileName, vector<vector<int>> &hashTable, int &tableSize);
-int deleteRecordById(string fileName, int id, vector<vector<int>> &hashTable, int &tableSize);
+int hashRecord(string fileName, int ind, vector<vector<int>> &hashTable, int &tableSize, int &hashElements, int &deletedElements);
+int hashFile(string fileName, vector<vector<int>> &hashTable, int &tableSize, int &hashElements, int &deletedElements);
+int deleteRecordById(string fileName, int id, vector<vector<int>> &hashTable, int &tableSize, int &deletedElements);
 Bank getRecordById(string fileName, int id, vector<vector<int>> &hashTable, int &tableSize);
 
 
