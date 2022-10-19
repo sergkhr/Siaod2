@@ -15,7 +15,11 @@ int hashRecord(string fileName, int ind, vector<vector<int>> &hashTable, int &ta
 		return 2; //index out of bounds
 	}
 	int id = readBank.id;
-	if(hashElements + deletedElements > (int)(0.75 * tableSize)) resizeHash(hashTable, tableSize);
+	if(hashElements > (int)(0.75 * tableSize)){
+		resizeHash(hashTable, tableSize);
+		hashElements -= deletedElements;
+		deletedElements = 0;
+	}	
 	hashElements++;
 	return addHash(hashTable, tableSize, id, ind);
 }
@@ -35,7 +39,11 @@ int hashFile(string fileName, vector<vector<int>> &hashTable, int &tableSize, in
 	int ind = 0;
 	while(fin.read((char*)&bank, sizeof(bank))){
 		int id = bank.id;
-		if(hashElements + deletedElements > (int)(0.75 * tableSize)) resizeHash(hashTable, tableSize);
+		if(hashElements > (int)(0.75 * tableSize)){
+			resizeHash(hashTable, tableSize);
+			hashElements -= deletedElements;
+			deletedElements = 0;
+		}
 		hashElements++;
 		addHash(hashTable, tableSize, id, ind);
 		ind++;
@@ -60,12 +68,7 @@ int deleteRecordById(string fileName, int id, vector<vector<int>> &hashTable, in
 	
 	deleteHash(hashTable, tableSize, id);
 	deletedElements++;
-	Bank bank;
-	fin.seekg(sizeof(Bank)*(ind), ios::beg);
-	fin.read((char*)&bank, sizeof(Bank));
-	bank.id = -1;
-	fin.seekp(-sizeof(bank), ios::cur);
-	fin.write((char*)&bank, sizeof(bank));
+	deleteBankByIndex(fileName, ind);
 
 	fin.close();
 	return 0;
