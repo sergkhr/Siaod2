@@ -17,16 +17,16 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "ThirdTask::@6890427a1f51a3e7e1df"
-		},
-		{
 			"id" : "hashFunctions::@56099a33689f37a39260"
 		},
 		{
-			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+			"id" : "binFile::@56099a33689f37a39260"
 		},
 		{
-			"id" : "binFile::@56099a33689f37a39260"
+			"id" : "ThirdTask::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 		},
 		{
 			"id" : "hashBinFile::@56099a33689f37a39260"

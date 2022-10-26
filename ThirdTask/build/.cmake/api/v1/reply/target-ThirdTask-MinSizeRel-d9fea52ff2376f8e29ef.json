@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Release/ThirdTask.exe"
+			"path" : "MinSizeRel/ThirdTask.exe"
 		},
 		{
-			"path" : "Release/ThirdTask.pdb"
+			"path" : "MinSizeRel/ThirdTask.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -57,7 +57,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG"
 				}
 			],
 			"language" : "CXX",
@@ -74,11 +74,11 @@
 			"id" : "hashFunctions::@56099a33689f37a39260"
 		},
 		{
-			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 3,
 			"id" : "binFile::@56099a33689f37a39260"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 4,
@@ -91,7 +91,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
@@ -100,17 +100,17 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "libraries\\Release\\hashFunctions.lib",
+				"fragment" : "libraries\\MinSizeRel\\hashFunctions.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "libraries\\Release\\binFile.lib",
+				"fragment" : "libraries\\MinSizeRel\\binFile.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 4,
-				"fragment" : "libraries\\Release\\hashBinFile.lib",
+				"fragment" : "libraries\\MinSizeRel\\hashBinFile.lib",
 				"role" : "libraries"
 			},
 			{
