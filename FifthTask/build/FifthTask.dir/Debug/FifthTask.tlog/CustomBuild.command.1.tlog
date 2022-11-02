@@ -1,0 +1,10 @@
+^D:\SERGEY KHRECHKO\SIAOD2\FIFTHTASK\CMAKELISTS.TXT
+setlocal
+"D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SD:/Sergey Khrechko/Siaod2/FifthTask" "-BD:/Sergey Khrechko/Siaod2/FifthTask/build" --check-stamp-file "D:/Sergey Khrechko/Siaod2/FifthTask/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

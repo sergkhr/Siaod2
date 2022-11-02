@@ -1,0 +1,3 @@
+add_library(binFile binFile.cpp)
+add_library(binarySearchTree binarySearchTree.cpp)
+add_library(randomizedBinarySearchTree randomizedBinarySearchTree.cpp)
