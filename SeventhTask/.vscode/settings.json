@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.vue": "html",
+        "iostream": "cpp",
+        "ios": "cpp",
+        "string": "cpp",
+        "ostream": "cpp",
+        "xstring": "cpp",
+        "utility": "cpp"
+    }
+}
