@@ -1,0 +1,1 @@
+123;Severniy bank;stolitza;false;67;obratniy;gorodA;true;888;nash;cheremushki;true;69;vperedniy;gorodA;false;89;vperedniy kolizia;gda;false;9998;stranniy;gorodB;true;761;afgan;fraud;true;672;grand;gorodA;false;554;finally;tartar;false;1234;ghad;hub;true;465;grin;turtle;true;80;gerf;gorodA;true;99;hard;gorodA;false;100;I'm 14-th;gorodA;true

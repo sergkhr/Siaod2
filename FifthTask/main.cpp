@@ -1,9 +1,56 @@
 #include <iostream>
+#include <chrono>
 #include "libraries/binFile.h"
 #include "libraries/binarySearchTree.h"
 #include "libraries/randomizedBinarySearchTree.h"
 
 using namespace std;
+
+BinarySearchTree *createBinaryTreeOutOfFile(string fileNameBin){
+	ifstream fin("../../" + fileNameBin, ios::binary);
+	if (!fin.is_open()){
+		cout << "Error opening file " << fileNameBin << endl;
+		fin.close();
+		return nullptr;
+	}
+	Bank bank;
+	fin.read((char*)&bank, sizeof(Bank));
+
+	BinarySearchTree *tree = new BinarySearchTree(bank.id, 0);
+	int index = 1;
+	while (fin.good()){
+		fin.read((char*)&bank, sizeof(Bank));
+		if (fin.good()){
+			tree->addNode(bank.id, index);
+		}
+		index++;
+	}
+	fin.close();
+	return tree;
+}
+
+RandomizedBinarySearchTree *createRandomizedTreeOutOfFile(string fileNameBin){
+	ifstream fin("../../" + fileNameBin, ios::binary);
+	if (!fin.is_open()){
+		cout << "Error opening file " << fileNameBin << endl;
+		fin.close();
+		return nullptr;
+	}
+	Bank bank;
+	fin.read((char*)&bank, sizeof(Bank));
+
+	RandomizedBinarySearchTree *tree = new RandomizedBinarySearchTree(bank.id, 0);
+	int index = 1;
+	while (fin.good()){
+		fin.read((char*)&bank, sizeof(Bank));
+		if (fin.good()){
+			tree = RandomizedBinarySearchTree::addNode(tree, bank.id, index);
+		}
+		index++;
+	}
+	fin.close();
+	return tree;
+}
 
 int main() {
 	srand(time(NULL));
@@ -55,5 +102,208 @@ int main() {
 		tree->printTree();
 		delete tree;
 	}
+
+
+
+	cout << "is it big file for testing time? (y/n) (n by default)" << endl;
+	char bigFile;
+	cin >> bigFile;
+	cin.ignore(INT_MAX, '\n');
+	if(bigFile != 'y' && bigFile != 'n') bigFile = 'n';
+	if(bigFile == 'n'){
+		cout << "Enter file name for initial text file (without .txt): " << endl;
+		string fileName;
+		getline(cin, fileName);
+		fileName += ".txt";
+		ifstream fin("../../" + fileName);
+		if(!fin.is_open()){
+			cout << "Error opening file" << endl;
+			return 1;
+		}
+		fin.close();
+
+		cout << "Enter file name for binary file (without .bin): " << endl;
+		string fileNameBin;
+		getline(cin, fileNameBin);
+		fileNameBin += ".txt";
+		ifstream finBin("../../" + fileNameBin);
+		if(!finBin.is_open()){
+			cout << "Error opening file" << endl;
+			return 1;
+		}
+		finBin.close();
+
+		toBinary(fileName, fileNameBin);
+		cout << "binary file contents: " << endl;
+		Bank bank;
+		int iter = 0;
+		while(getBank(fileNameBin, bank, iter) == 0){
+			//print bank
+			cout << "id: " << bank.id;
+			cout << ", name: " << bank.name;
+			cout << ", city: " << bank.city;
+			cout << ", commercialOrState: " << bank.commercialOrState << endl;
+			iter++;
+		}
+		cout << endl;
+
+
+		cout << "do you want to search in file using linear search? (y/n n by default)" << endl;
+		cin >> c;
+		if (c == 'y'){
+			cout << "enter id to get bank: " << endl;
+			int id;
+			cin >> id;
+			Bank bank;
+			bank.id = -1;
+			linearSearch(fileNameBin, bank, id);
+			if(bank.id == -1){
+				cout << "no bank with such id" << endl;
+			}
+			else{
+				cout << "id: " << bank.id;
+				cout << ", name: " << bank.name;
+				cout << ", city: " << bank.city;
+				cout << ", commercialOrState: " << bank.commercialOrState << endl;
+			}
+		}
+
+		
+		cout << "do you want to search in file using binary search tree? (y/n n by default)" << endl;
+		cin >> c;
+		if (c == 'y'){
+			cout << "enter id to get bank: " << endl;
+			int id;
+			cin >> id;
+			BinarySearchTree *tree = createBinaryTreeOutOfFile(fileNameBin);
+			int index = tree->findNodeIndex(id);
+			Bank bank;
+			bank.id = -1;
+			getBank(fileNameBin, bank, index);
+			if(bank.id == -1){
+				cout << "no bank with such id" << endl;
+			}
+			else{
+				cout << "id: " << bank.id;
+				cout << ", name: " << bank.name;
+				cout << ", city: " << bank.city;
+				cout << ", commercialOrState: " << bank.commercialOrState << endl;
+			}
+		}
+
+
+		cout << "do you want to search in file using randomized binary search tree? (y/n n by default)" << endl;
+		cin >> c;
+		if (c == 'y'){
+			cout << "enter id to get bank: " << endl;
+			int id;
+			cin >> id;
+			RandomizedBinarySearchTree *tree = createRandomizedTreeOutOfFile(fileNameBin);
+			int index = tree->findNodeIndex(id);
+			Bank bank;
+			bank.id = -1;
+			getBank(fileNameBin, bank, index);
+			if(bank.id == -1){
+				cout << "no bank with such id" << endl;
+			}
+			else{
+				cout << "id: " << bank.id;
+				cout << ", name: " << bank.name;
+				cout << ", city: " << bank.city;
+				cout << ", commercialOrState: " << bank.commercialOrState << endl;
+			}
+		}
+		
+	}
+	else{ //big file for testing time
+		cout << "Enter file name for binary file (without .bin): " << endl;
+		string fileNameBin;
+		getline(cin, fileNameBin);
+		fileNameBin += ".txt";
+		ifstream finBin("../../" + fileNameBin);
+		if(!finBin.is_open()){
+			cout << "Error opening file" << endl;
+			return 1;
+		}
+		finBin.close();
+
+
+		cout << "do you want to search in file using linear search? (y/n n by default)" << endl;
+		cin >> c;
+		if(c == 'y'){
+			for(int i = 0; i < 3; i++){
+				cout << "Enter id to get bank (from 1 to 200000 (1-250 are the last ones in bigFile.txt)): " << endl;
+				int id;
+				cin >> id;
+				Bank bank;
+				auto start = chrono::high_resolution_clock::now();
+				linearSearch(fileNameBin, bank, id);
+				auto end = chrono::high_resolution_clock::now();
+				auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+				cout << "id: " << bank.id;
+				cout << ", name: " << bank.name;
+				cout << ", city: " << bank.city;
+				cout << ", commercialOrState: " << bank.commercialOrState << endl;
+				cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
+			}
+		}
+
+		cout << "do you want to search in file using binary search tree? (y/n n by default)" << endl;
+		cin >> c;
+		if(c == 'y'){
+			auto treeBuildingStart = chrono::high_resolution_clock::now();
+			BinarySearchTree *tree = createBinaryTreeOutOfFile(fileNameBin);
+			auto treeBuildingEnd = chrono::high_resolution_clock::now();
+			auto treeBuildingTime = chrono::duration_cast<chrono::milliseconds>(treeBuildingEnd - treeBuildingStart);
+			cout << "tree building time: " << treeBuildingTime.count() << " ms" << endl;
+
+			for(int i = 0; i < 3; i++){
+				cout << "Enter id to get bank (from 1 to 200000 (1-250 are the last ones in bigFile.txt)): " << endl;
+				int id;
+				cin >> id;
+				Bank bank;
+				auto start = chrono::high_resolution_clock::now();
+				int index = tree->findNodeIndex(id);
+				bank.id = -1;
+				getBank(fileNameBin, bank, index);
+				auto end = chrono::high_resolution_clock::now();
+				auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+				cout << "id: " << bank.id;
+				cout << ", name: " << bank.name;
+				cout << ", city: " << bank.city;
+				cout << ", commercialOrState: " << bank.commercialOrState << endl;
+				cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
+			}
+		}
+
+		cout << "do you want to search in file using randomized binary search tree? (y/n n by default)" << endl;
+		cin >> c;
+		if(c == 'y'){
+			auto treeBuildingStart = chrono::high_resolution_clock::now();
+			RandomizedBinarySearchTree *tree = createRandomizedTreeOutOfFile(fileNameBin);
+			auto treeBuildingEnd = chrono::high_resolution_clock::now();
+			auto treeBuildingTime = chrono::duration_cast<chrono::milliseconds>(treeBuildingEnd - treeBuildingStart);
+			cout << "tree building time: " << treeBuildingTime.count() << " ms" << endl;
+
+			for(int i = 0; i < 3; i++){
+				cout << "Enter id to get bank (from 1 to 200000 (1-250 are the last ones in bigFile.txt)): " << endl;
+				int id;
+				cin >> id;
+				Bank bank;
+				auto start = chrono::high_resolution_clock::now();
+				int index = tree->findNodeIndex(id);
+				bank.id = -1;
+				getBank(fileNameBin, bank, index);
+				auto end = chrono::high_resolution_clock::now();
+				auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+				cout << "id: " << bank.id;
+				cout << ", name: " << bank.name;
+				cout << ", city: " << bank.city;
+				cout << ", commercialOrState: " << bank.commercialOrState << endl;
+				cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
+			}
+		}
+	}
+
 	return 0;
 }

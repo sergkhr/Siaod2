@@ -2,7 +2,10 @@
 #define __BINARYSEARCHTREE_H__
 
 #include <iostream>
+#include <fstream>
 #include <time.h>
+#include <string>
+#include <cstring>
 
 using namespace std;
 

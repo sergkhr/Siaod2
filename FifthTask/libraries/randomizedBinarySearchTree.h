@@ -2,9 +2,12 @@
 #define __RANDOMIZEDBINARYSEARCHTREE_H__
 
 #include <iostream>
+#include <fstream>
 #include <time.h>
 #include <random>
 #include <ctime>
+#include <string>
+#include <cstring>
 
 using namespace std;
 
