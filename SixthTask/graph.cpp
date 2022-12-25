@@ -125,65 +125,6 @@ public:
 		return dist[to];
 	}
 
-	
-	void findKShortestPaths(int from, int to, int k, vector<vector<int>>& paths) {//it's absolutely broken now
-		paths.clear();
-		vector<int> path;
-		int weight = findShortestPath(from, to, path);
-		paths.push_back(path);
-		vector<vector<int>> A; //path candidates (paths with one edge removed)
-		vector<int> C; //weights of path candidates
-		for (int i = 1; i < k; i++) {
-			for (int j = 0; j < path.size() - 1; j++) {
-				int removedEdgeFrom = path[j];
-				int removedEdgeTo = path[j + 1];
-				int removedEdgeWeight = adjMatrix[removedEdgeFrom][removedEdgeTo];
-				vector<int> newPath;
-				int weight = 0;
-				for (int l = 0; l < j; l++) {
-					newPath.push_back(path[l]);
-					weight += adjMatrix[path[l]][path[l + 1]];
-				}
-				removeEdge(removedEdgeFrom, removedEdgeTo);
-				vector<int> newPath2;
-				weight += findShortestPath(removedEdgeFrom, to, newPath2);
-				for (int l = 0; l < newPath2.size(); l++) {
-					newPath.push_back(newPath2[l]);
-				}
-				A.push_back(newPath);
-				C.push_back(weight);
-				addEdge(removedEdgeFrom, removedEdgeTo, removedEdgeWeight);
-			}
-
-			for (int j = 0; j < A.size(); j++) {
-				for (int t = 0; t < A[j].size(); t++) {
-					cout << A[j][t] << " ";
-				}
-				cout << "weight: " << C[j] << endl;
-			}
-			cout << endl;
-			int min = INT_MAX;
-			int minIndex = -1;
-			for (int j = 0; j < C.size(); j++) {
-				bool alreadyInPaths = false;
-				for (int l = 0; l < paths.size(); l++) {
-					if (paths[l] == A[j]) {
-						alreadyInPaths = true;
-						break;
-					}
-				}
-				if (C[j] < min && !alreadyInPaths) {
-					min = C[j];
-					minIndex = j;
-				}
-			}
-			paths.push_back(A[minIndex]);
-			path = A[minIndex];
-			A.clear();
-			C.clear();
-		}
-	}
-
 };
 
 int main(){
@@ -201,19 +142,5 @@ int main(){
 		cout << path[i] + 1 << " ";
 	}
 	cout << endl;
-
-	//yen's algorithm absolutely broken now
-	// cout << "insert numbers of vertexes to find k shortest paths between them (also insert k)" << endl;
-	// int k;
-	// cin >> from >> to >> k;
-	// vector<vector<int>> paths;
-	// g.findKShortestPaths(from - 1, to - 1, k, paths);
-	// for (int i = 0; i < paths.size(); i++) {
-	// 	cout << "Path " << i + 1 << ": ";
-	// 	for (int j = paths[i].size() - 1; j >= 0; j--) {
-	// 		cout << paths[i][j] + 1 << " ";
-	// 	}
-	// 	cout << endl;
-	// }
 	return 0;
 }
