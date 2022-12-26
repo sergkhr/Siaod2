@@ -33,9 +33,9 @@ public:
 
 	static RandomizedBinarySearchTree *rotateLeft(RandomizedBinarySearchTree *root);
 	static RandomizedBinarySearchTree *rotateRight(RandomizedBinarySearchTree *root);
-	static RandomizedBinarySearchTree *addNodeToRoot(RandomizedBinarySearchTree *root, int id, int index);
+	static RandomizedBinarySearchTree *addNodeToRoot(RandomizedBinarySearchTree *root, int id, int index, long long &countTurns);
 
-	static RandomizedBinarySearchTree *addNode(RandomizedBinarySearchTree *root, int id, int index);
+	static RandomizedBinarySearchTree *addNode(RandomizedBinarySearchTree *root, int id, int index, long long &countTurns);
 	int findNodeIndex(int id);
 
 	static RandomizedBinarySearchTree *merge(RandomizedBinarySearchTree *left, RandomizedBinarySearchTree *right);

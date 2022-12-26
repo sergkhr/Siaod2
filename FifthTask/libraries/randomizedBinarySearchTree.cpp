@@ -81,34 +81,36 @@ RandomizedBinarySearchTree *RandomizedBinarySearchTree::rotateRight(RandomizedBi
 	return newRoot;
 }
 
-RandomizedBinarySearchTree *RandomizedBinarySearchTree::addNodeToRoot(RandomizedBinarySearchTree *root, int id, int index){
+RandomizedBinarySearchTree *RandomizedBinarySearchTree::addNodeToRoot(RandomizedBinarySearchTree *root, int id, int index, long long &countTurns){
 	if (!root){
 		return new RandomizedBinarySearchTree(id, index);
 	}
 	if (id < root->getId()){
-		root->setLeft(addNodeToRoot(root->getLeft(), id, index));
+		root->setLeft(addNodeToRoot(root->getLeft(), id, index, countTurns));
 		root = rotateRight(root);
+		countTurns++;
 	}
 	else{
-		root->setRight(addNodeToRoot(root->getRight(), id, index));
+		root->setRight(addNodeToRoot(root->getRight(), id, index, countTurns));
 		root = rotateLeft(root);
+		countTurns++;
 	}
 	//fixsize is done when we rotate
 	return root;
 }
 
-RandomizedBinarySearchTree *RandomizedBinarySearchTree::addNode(RandomizedBinarySearchTree *root, int id, int index){
+RandomizedBinarySearchTree *RandomizedBinarySearchTree::addNode(RandomizedBinarySearchTree *root, int id, int index, long long &countTurns){
 	if (!root){
 		return new RandomizedBinarySearchTree(id, index);
 	}
 	if (rand() % (root->getSize() + 1) == 0){
-		return addNodeToRoot(root, id, index);
+		return addNodeToRoot(root, id, index, countTurns);
 	}
 	if (id < root->getId()){
-		root->setLeft(addNode(root->getLeft(), id, index));
+		root->setLeft(addNode(root->getLeft(), id, index, countTurns));
 	}
 	else{
-		root->setRight(addNode(root->getRight(), id, index));
+		root->setRight(addNode(root->getRight(), id, index, countTurns));
 	}
 	fixSize(root);
 	return root;

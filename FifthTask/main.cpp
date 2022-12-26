@@ -22,14 +22,14 @@ BinarySearchTree *createBinaryTreeOutOfFile(string fileNameBin){
 		fin.read((char*)&bank, sizeof(Bank));
 		if (fin.good()){
 			tree->addNode(bank.id, index);
+			index++;
 		}
-		index++;
 	}
 	fin.close();
 	return tree;
 }
 
-RandomizedBinarySearchTree *createRandomizedTreeOutOfFile(string fileNameBin){
+RandomizedBinarySearchTree *createRandomizedTreeOutOfFile(string fileNameBin, double &averageTurns){
 	ifstream fin("../../" + fileNameBin, ios::binary);
 	if (!fin.is_open()){
 		cout << "Error opening file " << fileNameBin << endl;
@@ -41,13 +41,16 @@ RandomizedBinarySearchTree *createRandomizedTreeOutOfFile(string fileNameBin){
 
 	RandomizedBinarySearchTree *tree = new RandomizedBinarySearchTree(bank.id, 0);
 	int index = 1;
+	long long countTurns = 0;
 	while (fin.good()){
 		fin.read((char*)&bank, sizeof(Bank));
 		if (fin.good()){
-			tree = RandomizedBinarySearchTree::addNode(tree, bank.id, index);
+			tree = RandomizedBinarySearchTree::addNode(tree, bank.id, index, countTurns);
+			index++;
+			countTurns++;
 		}
-		index++;
 	}
+	averageTurns = (double)countTurns / (double)index;
 	fin.close();
 	return tree;
 }
@@ -83,14 +86,15 @@ int main() {
 	cin >> c;
 	if (c == 'y'){
 		RandomizedBinarySearchTree *tree = new RandomizedBinarySearchTree(120, 0);
-		tree = RandomizedBinarySearchTree::addNode(tree, 100, 1);
-		tree = RandomizedBinarySearchTree::addNode(tree, 110, 2);
-		tree = RandomizedBinarySearchTree::addNode(tree, 130, 3);
-		tree = RandomizedBinarySearchTree::addNode(tree, 122, 11);
-		tree = RandomizedBinarySearchTree::addNode(tree, 140, 4);
-		tree = RandomizedBinarySearchTree::addNode(tree, 150, 5);
-		tree = RandomizedBinarySearchTree::addNode(tree, 160, 6);
-		tree = RandomizedBinarySearchTree::addNode(tree, 145, 7);
+		long long countTurns = 0;
+		tree = RandomizedBinarySearchTree::addNode(tree, 100, 1, countTurns);
+		tree = RandomizedBinarySearchTree::addNode(tree, 110, 2, countTurns);
+		tree = RandomizedBinarySearchTree::addNode(tree, 130, 3, countTurns);
+		tree = RandomizedBinarySearchTree::addNode(tree, 122, 11, countTurns);
+		tree = RandomizedBinarySearchTree::addNode(tree, 140, 4, countTurns);
+		tree = RandomizedBinarySearchTree::addNode(tree, 150, 5, countTurns);
+		tree = RandomizedBinarySearchTree::addNode(tree, 160, 6, countTurns);
+		tree = RandomizedBinarySearchTree::addNode(tree, 145, 7, countTurns);
 		tree->printTree();
 		cout << "insert search id" << endl;
 		int id;
@@ -198,7 +202,9 @@ int main() {
 			cout << "enter id to get bank: " << endl;
 			int id;
 			cin >> id;
-			RandomizedBinarySearchTree *tree = createRandomizedTreeOutOfFile(fileNameBin);
+			double averageTurns = 0;
+			RandomizedBinarySearchTree *tree = createRandomizedTreeOutOfFile(fileNameBin, averageTurns);
+			cout << "average turns: " << averageTurns << endl;
 			int index = tree->findNodeIndex(id);
 			Bank bank;
 			bank.id = -1;
@@ -280,10 +286,12 @@ int main() {
 		cin >> c;
 		if(c == 'y'){
 			auto treeBuildingStart = chrono::high_resolution_clock::now();
-			RandomizedBinarySearchTree *tree = createRandomizedTreeOutOfFile(fileNameBin);
+			double averageTurns = 0;
+			RandomizedBinarySearchTree *tree = createRandomizedTreeOutOfFile(fileNameBin, averageTurns);
 			auto treeBuildingEnd = chrono::high_resolution_clock::now();
 			auto treeBuildingTime = chrono::duration_cast<chrono::milliseconds>(treeBuildingEnd - treeBuildingStart);
 			cout << "tree building time: " << treeBuildingTime.count() << " ms" << endl;
+			cout << "average turns: " << averageTurns << endl;
 
 			for(int i = 0; i < 3; i++){
 				cout << "Enter id to get bank (from 1 to 200000 (1-250 are the last ones in bigFile.txt)): " << endl;
