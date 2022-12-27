@@ -3,6 +3,8 @@
 #include <map>
 #include <vector>
 #include <algorithm>
+#include <queue>
+#include <functional>
 
 using namespace std;
 
@@ -24,7 +26,6 @@ string rleCompression(string s) {
 			count = 1;
 		}
 	}
-	//cout << result << endl;
 	return result;
 }
 
@@ -47,12 +48,6 @@ string rleDeCompression(string s) {
 	return result;
 }
 
-struct NodeLZ77{
-	int offset;
-	int length;
-	char next;
-};
-
 int findMatch(string s, int i, int windowSize, int lookAheadSize, int &offset, int &length) {
 	int max = 0;
 	for (int j = i - windowSize; j < i; j++) {
@@ -71,6 +66,12 @@ int findMatch(string s, int i, int windowSize, int lookAheadSize, int &offset, i
 	}
 	return max;
 }
+
+struct NodeLZ77{
+	int offset;
+	int length;
+	char next;
+};
 
 vector<NodeLZ77> lz77Compression(string s, int windowSize, int lookAheadSize) {
 	vector<NodeLZ77> result;
@@ -248,6 +249,88 @@ string shennonFanoDeCompression(map<char, string> code, string s) {
 	return result;
 }
 
+struct HaffmanBinaryTreeNode {
+	char c;
+	int count;
+	HaffmanBinaryTreeNode* left;
+	HaffmanBinaryTreeNode* right;
+	HaffmanBinaryTreeNode(char c, int count) {
+		this->c = c;
+		this->count = count;
+		this->left = nullptr;
+		this->right = nullptr;
+	}
+	HaffmanBinaryTreeNode(HaffmanBinaryTreeNode* left, HaffmanBinaryTreeNode* right) {
+		this->c = 0;
+		this->count = left->count + right->count;
+		this->left = left;
+		this->right = right;
+	}
+	~HaffmanBinaryTreeNode() {
+		if (this->left != nullptr) {
+			delete this->left;
+		}
+		if (this->right != nullptr) {
+			delete this->right;
+		}
+	}
+};
+
+void haffmanCompressionMapRecursive(HaffmanBinaryTreeNode* node, map<char, string>& result, string code = "") {
+	if (node->left == nullptr && node->right == nullptr) {
+		result[node->c] = code;
+		return;
+	}
+	haffmanCompressionMapRecursive(node->left, result, code + "0");
+	haffmanCompressionMapRecursive(node->right, result, code + "1");
+}
+
+map<char, string> haffmanCompressionMap(const map<char, int>& count) {
+	map<char, string> result;
+	vector<HaffmanBinaryTreeNode*> temp;
+	for (auto it = count.begin(); it != count.end(); it++) {
+		temp.push_back(new HaffmanBinaryTreeNode(it->first, it->second));
+	}
+	while (temp.size() > 1) {
+		sort(temp.begin(), temp.end(), [](HaffmanBinaryTreeNode* a, HaffmanBinaryTreeNode* b) {return a->count > b->count; }); //haha press f to pay respect to efficiency
+		HaffmanBinaryTreeNode* left = temp.back();
+		temp.pop_back();
+		HaffmanBinaryTreeNode* right = temp.back();
+		temp.pop_back();
+		temp.push_back(new HaffmanBinaryTreeNode(left, right));
+	}
+	HaffmanBinaryTreeNode* root = temp.back();
+	temp.pop_back();
+	//now we have haffman tree
+	//we go recursive and fill map
+	haffmanCompressionMapRecursive(root, result);
+	delete root;
+	return result;
+}
+
+string haffmanCompression(map<char, string> code, string s) {
+	string result = "";
+	for (int i = 0; i < s.length(); i++) {
+		result += code[s[i]];
+	}
+	return result;
+}
+
+string haffmanDeCompression(map<char, string> code, string s) {
+	string result = "";
+	string temp = "";
+	for (int i = 0; i < s.length(); i++) {
+		temp += s[i];
+		for (auto it = code.begin(); it != code.end(); it++) {
+			if (it->second == temp) {
+				result += it->first;
+				temp = "";
+				break;
+			}
+		}
+	}
+	return result;
+}
 
 
 
@@ -309,7 +392,7 @@ int main() {
 	cout << endl;
 
 
-	cout << "insert string that is to be decompressed via shennon fano algorithm: " << endl;
+	cout << "insert string that is to be compressed via shennon fano algorithm: " << endl;
 	getline(cin, s);
 
 	//s = rleDeCompression("a<50>b<39>c<18>d<49>e<35>f<24>"); //test from wiki
@@ -318,7 +401,8 @@ int main() {
 	map<char, string> compressedMap = shennonFanoCompressionMap(count);
 	//print the compressed map
 	for (auto it = compressedMap.begin(); it != compressedMap.end(); it++) {
-		cout << it->first << " " << it->second << endl;
+		cout << it->first << " " << it->second;
+		cout << " total symbols: " << count[it->first] << endl;
 	}
 	cout << endl;
 	compressed = shennonFanoCompression(compressedMap, s);
@@ -330,6 +414,25 @@ int main() {
 	//with the compressed string as a sequence of bits (every bit is 1/8 byte)
 	//that's why s is multiplyed by 8 and compressed by 1
 	cout << "compression ratio (more = better): " << (double)(s.size()*8) / (double)(compressed.size()) << endl;
+	cout << endl;
+
+	cout << "insert string that is to be compressed via haffman algorithm: " << endl;
+	getline(cin, s);
+	count = countCharacters(s);
+	compressedMap = haffmanCompressionMap(count);
+	//print the compressed map
+	for (auto it = compressedMap.begin(); it != compressedMap.end(); it++) {
+		cout << it->first << " " << it->second;
+		cout << " total symbols: " << count[it->first] << endl;
+	}
+	cout << endl;
+	compressed = haffmanCompression(compressedMap, s);
+	cout << "haffman compressed   string: " << compressed << endl;
+	decompressed = haffmanDeCompression(compressedMap, compressed);
+	cout << "haffman decompressed string: " << decompressed << endl;
+	cout << "haffman compressing  string: " << s << endl;
+	cout << "compression ratio (more = better): " << (double)(s.size() * 8) / (double)(compressed.size()) << endl;
+	cout << endl;
 
 	return 0;
 }
