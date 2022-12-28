@@ -201,6 +201,8 @@ map<char, string> shennonFanoCompressionMap(const map<char, int>& count) {
 	for (int k = 0; k < right.size(); k++) {
 		result[right[k].first] = "1";
 	}
+
+
 	//now we go recursive for left and right
 	if (left.size() > 1) {
 		map<char, int> tempCount;
@@ -311,7 +313,7 @@ map<char, string> haffmanCompressionMap(const map<char, int>& count) {
 string haffmanCompression(map<char, string> code, string s) {
 	string result = "";
 	for (int i = 0; i < s.length(); i++) {
-		result += code[s[i]];
+		result += code[s[i]] + " ";
 	}
 	return result;
 }
@@ -320,6 +322,7 @@ string haffmanDeCompression(map<char, string> code, string s) {
 	string result = "";
 	string temp = "";
 	for (int i = 0; i < s.length(); i++) {
+		if(s[i] == ' ') continue;
 		temp += s[i];
 		for (auto it = code.begin(); it != code.end(); it++) {
 			if (it->second == temp) {
@@ -423,15 +426,36 @@ int main() {
 	//print the compressed map
 	for (auto it = compressedMap.begin(); it != compressedMap.end(); it++) {
 		cout << it->first << " " << it->second;
-		cout << " total symbols: " << count[it->first] << endl;
+		cout << " total symbols: " << count[it->first] << " probability: " << (double)count[it->first] / (double)s.size() << endl;
 	}
+	cout << endl;
+	cout << "average length of code: ";
+	double averageLength = 0;
+	for (auto it = compressedMap.begin(); it != compressedMap.end(); it++) {
+		averageLength += it->second.size();
+	}
+	averageLength /= compressedMap.size();
+	cout << averageLength << endl;
+	cout << "dispersion of code: ";
+	double dispersion = 0;
+	for (auto it = compressedMap.begin(); it != compressedMap.end(); it++) {
+		dispersion += (it->second.size() - averageLength) * (it->second.size() - averageLength);
+	}
+	dispersion /= compressedMap.size();
+	cout << dispersion << endl;
 	cout << endl;
 	compressed = haffmanCompression(compressedMap, s);
 	cout << "haffman compressed   string: " << compressed << endl;
 	decompressed = haffmanDeCompression(compressedMap, compressed);
 	cout << "haffman decompressed string: " << decompressed << endl;
 	cout << "haffman compressing  string: " << s << endl;
-	cout << "compression ratio (more = better): " << (double)(s.size() * 8) / (double)(compressed.size()) << endl;
+	int spaces = 0;
+	for (int i = 0; i < compressed.size(); i++) {
+		if (compressed[i] == ' ') {
+			spaces++;
+		}
+	}
+	cout << "compression ratio (more = better): " << (double)(s.size() * 8) / (double)(compressed.size() - spaces) << endl;
 	cout << endl;
 
 	return 0;

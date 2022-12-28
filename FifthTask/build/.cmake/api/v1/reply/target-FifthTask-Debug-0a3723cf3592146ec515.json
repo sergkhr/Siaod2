@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Release/FifthTask.exe"
+			"path" : "Debug/FifthTask.exe"
 		},
 		{
-			"path" : "Release/FifthTask.pdb"
+			"path" : "Debug/FifthTask.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -57,7 +57,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1"
 				}
 			],
 			"language" : "CXX",
@@ -70,16 +70,16 @@
 	"dependencies" : 
 	[
 		{
+			"backtrace" : 3,
+			"id" : "binarySearchTree::@56099a33689f37a39260"
+		},
+		{
 			"backtrace" : 2,
 			"id" : "binFile::@56099a33689f37a39260"
 		},
 		{
 			"backtrace" : 4,
 			"id" : "randomizedBinarySearchTree::@56099a33689f37a39260"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "binarySearchTree::@56099a33689f37a39260"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
@@ -91,26 +91,26 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "libraries\\Release\\binFile.lib",
+				"fragment" : "libraries\\Debug\\binFile.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "libraries\\Release\\binarySearchTree.lib",
+				"fragment" : "libraries\\Debug\\binarySearchTree.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 4,
-				"fragment" : "libraries\\Release\\randomizedBinarySearchTree.lib",
+				"fragment" : "libraries\\Debug\\randomizedBinarySearchTree.lib",
 				"role" : "libraries"
 			},
 			{

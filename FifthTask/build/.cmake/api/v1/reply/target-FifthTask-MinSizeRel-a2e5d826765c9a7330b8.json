@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "RelWithDebInfo/FifthTask.exe"
+			"path" : "MinSizeRel/FifthTask.exe"
 		},
 		{
-			"path" : "RelWithDebInfo/FifthTask.pdb"
+			"path" : "MinSizeRel/FifthTask.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -57,7 +57,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG"
 				}
 			],
 			"language" : "CXX",
@@ -70,16 +70,16 @@
 	"dependencies" : 
 	[
 		{
+			"backtrace" : 3,
+			"id" : "binarySearchTree::@56099a33689f37a39260"
+		},
+		{
 			"backtrace" : 2,
 			"id" : "binFile::@56099a33689f37a39260"
 		},
 		{
 			"backtrace" : 4,
 			"id" : "randomizedBinarySearchTree::@56099a33689f37a39260"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "binarySearchTree::@56099a33689f37a39260"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
@@ -91,26 +91,26 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "libraries\\RelWithDebInfo\\binFile.lib",
+				"fragment" : "libraries\\MinSizeRel\\binFile.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "libraries\\RelWithDebInfo\\binarySearchTree.lib",
+				"fragment" : "libraries\\MinSizeRel\\binarySearchTree.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 4,
-				"fragment" : "libraries\\RelWithDebInfo\\randomizedBinarySearchTree.lib",
+				"fragment" : "libraries\\MinSizeRel\\randomizedBinarySearchTree.lib",
 				"role" : "libraries"
 			},
 			{

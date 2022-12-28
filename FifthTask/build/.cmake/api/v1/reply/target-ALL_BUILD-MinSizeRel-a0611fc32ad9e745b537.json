@@ -17,16 +17,16 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "binFile::@56099a33689f37a39260"
-		},
-		{
-			"id" : "randomizedBinarySearchTree::@56099a33689f37a39260"
-		},
-		{
 			"id" : "FifthTask::@6890427a1f51a3e7e1df"
 		},
 		{
 			"id" : "binarySearchTree::@56099a33689f37a39260"
+		},
+		{
+			"id" : "binFile::@56099a33689f37a39260"
+		},
+		{
+			"id" : "randomizedBinarySearchTree::@56099a33689f37a39260"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"

@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "MinSizeRel/FifthTask.exe"
+			"path" : "Release/FifthTask.exe"
 		},
 		{
-			"path" : "MinSizeRel/FifthTask.pdb"
+			"path" : "Release/FifthTask.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -57,7 +57,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG"
 				}
 			],
 			"language" : "CXX",
@@ -70,16 +70,16 @@
 	"dependencies" : 
 	[
 		{
+			"backtrace" : 3,
+			"id" : "binarySearchTree::@56099a33689f37a39260"
+		},
+		{
 			"backtrace" : 2,
 			"id" : "binFile::@56099a33689f37a39260"
 		},
 		{
 			"backtrace" : 4,
 			"id" : "randomizedBinarySearchTree::@56099a33689f37a39260"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "binarySearchTree::@56099a33689f37a39260"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
@@ -91,7 +91,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
@@ -100,17 +100,17 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "libraries\\MinSizeRel\\binFile.lib",
+				"fragment" : "libraries\\Release\\binFile.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "libraries\\MinSizeRel\\binarySearchTree.lib",
+				"fragment" : "libraries\\Release\\binarySearchTree.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 4,
-				"fragment" : "libraries\\MinSizeRel\\randomizedBinarySearchTree.lib",
+				"fragment" : "libraries\\Release\\randomizedBinarySearchTree.lib",
 				"role" : "libraries"
 			},
 			{
